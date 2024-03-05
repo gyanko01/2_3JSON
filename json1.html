@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSON 1 html</title>
+</head>
+
+<body>
+	<script language="javascript">
+	var songs = [
+    
+            {
+                "title": "Bohemian Rhapsody",
+                "artist": "Queen",
+                "year": 1975,
+                "genres": ["Rock"]
+            },
+            {
+                "title": "Shape of You",
+                "artist": "Ed Sheeran",
+                "year": 2017,
+                "genres": ["Pop"]
+            },
+            {
+                "title": "Hotel California",
+                "artist": "Eagles",
+                "year": 1977,
+                "genres": ["Rock"]
+            },
+            {
+                "title": "Friends in Low Places",
+                "artist": "Garth Brooks",
+                "year": 1990,
+                "genres":["Country"]
+            },
+            {
+                "title": "I Will Always Love You",
+                "artist": "Whitney Houstan",
+                "year": 1992,
+                "genres": ["Dance Pop"]
+
+            },
+            {
+                "title": "Encore",
+                "artist": "Linkin Park",
+                "year": 2004,
+                "genres":["Metal", "Hip-Hop/Rap"]
+            },
+            {  
+                "title": "Billie Jean",
+                "artist": "Michael Jackson",
+                "year": 1982,
+                "genres": ["Pop"]
+
+            },
+            {
+                "title": "Enter Sandman",
+                "artist": "Metallica",
+                "year": 1991,
+                "genres": ["Metal"]
+
+            },
+            {
+                "title": "Karma",
+                "artists": "Taylor Swift",
+                "year": 2023,
+                "genres":["Pop"]
+            }
+        ]
+
+ 
+
+	document.write (songs["title"] + "<br>");  	//use a key as an index
+
+ 	strSongs  = JSON.stringify(songs);				//serialize the json
+	document.write (strSongs +  "<br>")
+	//document.write (songs);   						//will not work - it's an object
+
+    jsonSongs = JSON.parse(strSongs);			//convert back to an object 
+	// document.write (": " + jsonStudent["last_name"] + "<br>");
+    </script>
+</body>
+</html>

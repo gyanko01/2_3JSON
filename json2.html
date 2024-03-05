@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSON Pet Object</title>
+	<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   
+	crossorigin="anonymous"></script>
+
+	<style type="text/css">
+		body,html {font-size: 24px;}
+		li {font-size: 22px; list-style-type: none}
+	</style>
+</head>
+
+<body>
+	<script language="javascript">
+	$.get( "https://gyanko01.github.io/2_3JSON/songs.json", 
+			function( data) {
+				console.log('raw data\n'+ data)
+                str = JSON.stringify(data);
+                document.getElementById('json-data').innerHTML =str;
+                console.log('string data\n'+ str)
+
+				str = "<ul>";            
+				data.songs.forEach(function(song) { 
+				str += "<li>"
+                    + song.title + "</li>"
+					+"Artist:" + song.artist + "</li>"
+                    + "Genres:" + song.genres.join(", ") + "</li>"
+                    +"Relseased:" +  song.year +  + "</li>"
+				});
+	str += "</ul>";
+    
+	document.getElementById('json-list').innerHTML = str;  
+	})
+</script>
+	<div id="json-data"></div>
+	<div id="json-list"></div>
+</body>
+</html>
