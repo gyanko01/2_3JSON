@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Json 3 html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>   
+
+<style>
+    body, html {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    select {
+        margin-bottom: 10px;
+    }
+    #filtered-songs {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<script>
+    // Read the songs.json data and store it in a variable
+    var songs;
+    $.get("https://gyanko01.github.io/2_3JSON/songs.json", function(data) {
+        songs= data;
+        var genres = [];
+        // Populate the genres array with unique genres from the songs data
+        songs.forEach(function(song) {
+            songs.genres.forEach(function(genre) {
+                if (genres.indexOf(genre) === -1) {
+                    genres.push(genre);
+                }
+            });
+        });
+        // Populate the drop-down list with genres
+        var select = $("#genre-select");
+        genres.forEach(function(genre) {
+            select.append($("<option>").text(genre));
+        });
+    });
+
+    // Handle form submission
+    $("form").submit(function(event) {
+        event.preventDefault();
+        // Get the selected genre
+        var selectedGenre = $("#genre-select").val();
+        // Filter the songs by the selected genre
+        var filteredSongs = songs.filter(function(song) {
+            return song.genres.indexOf(selectedGenre) !== -1;
+        });
+        // Display the filtered song titles
+        var filteredList = $("#filtered-songs");
+        filteredList.empty();
+        filteredSongs.forEach(function(song) {
+            filteredList.append($("<div>").text(song.title));
+        });
+    });
+</script>
+
+<form>
+    <label for="genre-select">Select Genre:</label>
+    <select id="genre-select">
+        <!-- Genres will be populated dynamically -->
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<div id="filtered-songs"></div>
+
+</body>
+</html>
